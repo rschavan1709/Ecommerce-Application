@@ -1,5 +1,6 @@
 package com.ecommerce.model;
 
+import com.ecommerce.enums.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +19,7 @@ public class User {
     private Integer id;
     private String firstName;
     private String lastName;
-    private String gender;
+    private Gender gender;
     private String city;
     private Integer age;
 

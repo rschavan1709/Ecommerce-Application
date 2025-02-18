@@ -4,10 +4,10 @@ import com.ecommerce.dto.request.UserRequest;
 import com.ecommerce.dto.response.BaseResponse;
 import com.ecommerce.dto.response.UserResponse;
 import com.ecommerce.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -18,7 +18,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping()
-    public ResponseEntity<BaseResponse<UserResponse>> addUser(@RequestBody UserRequest userRequest){
+    public ResponseEntity<BaseResponse<UserResponse>> addUser(@RequestBody @Valid UserRequest userRequest){
         return ResponseEntity.ok(userService.addUser(userRequest));
     }
 

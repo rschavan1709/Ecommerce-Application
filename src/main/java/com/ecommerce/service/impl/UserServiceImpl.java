@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
     public BaseResponse<UserResponse> addUser(UserRequest userRequest) {
         User user = User.builder().build();
         BeanUtils.copyProperties(userRequest,user);
+        user.setAge(Integer.valueOf(userRequest.getAge()));
         user = userRepository.save(user);
         UserResponse userResponse = UserResponse.builder().build();
         BeanUtils.copyProperties(user,userResponse);
