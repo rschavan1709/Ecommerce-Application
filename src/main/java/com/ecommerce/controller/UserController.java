@@ -6,6 +6,7 @@ import com.ecommerce.dto.response.UserResponse;
 import com.ecommerce.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -19,7 +20,7 @@ public class UserController {
 
     @PostMapping()
     public ResponseEntity<BaseResponse<UserResponse>> addUser(@RequestBody @Valid UserRequest userRequest){
-        return ResponseEntity.ok(userService.addUser(userRequest));
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.addUser(userRequest));
     }
 
     @GetMapping()
@@ -33,9 +34,13 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<BaseResponse<String>> deleteUser(@PathVariable Integer id){
+    public ResponseEntity<BaseResponse<Void>> deleteUser(@PathVariable Integer id){
         return ResponseEntity.ok(userService.deleteUser(id));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<BaseResponse<UserResponse>> updateUser(@PathVariable Integer id,@RequestBody @Valid UserRequest userRequest ){
+        return ResponseEntity.ok(userService.updateUser(id,userRequest));
+    }
 
 }

@@ -19,6 +19,7 @@ public class User {
     private Integer id;
     private String firstName;
     private String lastName;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     private String city;
     private Integer age;

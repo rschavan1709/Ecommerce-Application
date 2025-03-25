@@ -14,5 +14,7 @@ public interface UserService {
 
     public BaseResponse<List<UserResponse>> getAllUsers();
 
-    public BaseResponse<String> deleteUser(Integer id);
+    public BaseResponse<Void> deleteUser(Integer id);
+
+    public BaseResponse<UserResponse> updateUser(Integer id,UserRequest userRequest);
 }
