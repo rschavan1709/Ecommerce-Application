@@ -27,5 +27,10 @@ public class UserRequest {
     @NotEmpty(message = USER_AGE_EMPTY)
     @Pattern(regexp = REG_EXP_NUMERIC,message = USER_AGE_REGEX_ERROR)
     private String age;
-
+    @NotEmpty(message = USER_EMAIL_EMPTY)
+    @Email(message = USER_EMAIL_INVALID)
+    private String email;
+    @NotEmpty(message = USER_PASSWORD_EMPTY)
+    @Pattern(regexp = REG_EXP_PASSWORD,message = USER_PASSWORD_REGEX_ERROR)
+    private String password;
 }

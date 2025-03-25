@@ -1,6 +1,7 @@
 package com.ecommerce.model;
 
 import com.ecommerce.enums.Gender;
+import com.ecommerce.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,5 +24,8 @@ public class User {
     private Gender gender;
     private String city;
     private Integer age;
-
+    private String email;
+    private String password;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }

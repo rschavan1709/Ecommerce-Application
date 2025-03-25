@@ -19,8 +19,8 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping()
-    public ResponseEntity<BaseResponse<UserResponse>> addUser(@RequestBody @Valid UserRequest userRequest){
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.addUser(userRequest));
+    public ResponseEntity<BaseResponse<UserResponse>> registerUser(@RequestBody @Valid UserRequest userRequest){
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.registerUser(userRequest));
     }
 
     @GetMapping()

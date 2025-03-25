@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.ecommerce.constants.UserConstant.*;
 
@@ -24,8 +25,11 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public BaseResponse<UserResponse> addUser(UserRequest userRequest) {
-        log.info("Inside addUser method");
+    public BaseResponse<UserResponse> registerUser(UserRequest userRequest) {
+        log.info("Inside registerUser method");
+        Optional<User> optionalUser = userRepository.findByEmail(userRequest.getEmail());
+        if(optionalUser.isPresent())
+            throw new RuntimeException(USER_ALREADY_EXISTS_WITH_GIVEN_EMAIL);
         User user = User.builder().build();
         BeanUtils.copyProperties(userRequest,user);
         user.setAge(Integer.valueOf(userRequest.getAge()));

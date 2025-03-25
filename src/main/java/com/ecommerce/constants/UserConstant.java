@@ -21,4 +21,11 @@ public final class UserConstant {
     public static final String USER_GENDER_NULL = "Gender is required";
     public static final String USER_AGE_REGEX_ERROR = "Age should be numeric";
     public static final String USER_AGE_EMPTY = "Age cannot be empty";
+    public static final String USER_EMAIL_EMPTY = "Email cannot be empty";
+    public static final String USER_EMAIL_INVALID = "Email is invalid";
+    public static final String USER_PASSWORD_EMPTY = "Password cannot be empty";
+    public static final String USER_PASSWORD_REGEX_ERROR = "Password should have at least one digit, " +
+            "one uppercase letter,one lowercase letter, one special character and at least 8 characters and " +
+            "at most 15 characters";
+    public static final String USER_ALREADY_EXISTS_WITH_GIVEN_EMAIL = "User is already exists with given email";
 }

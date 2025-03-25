@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserService {
 
-    public BaseResponse<UserResponse> addUser(UserRequest userRequest);
+    public BaseResponse<UserResponse> registerUser(UserRequest userRequest);
 
     public BaseResponse<UserResponse> getUser(Integer id);
 
