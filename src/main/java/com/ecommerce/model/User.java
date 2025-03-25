@@ -28,7 +28,7 @@ public class User {
     private String city;
     @Column(name = "age")
     private Integer age;
-    @Column(name = "email", unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
     @Column(name = "password")
     private String password;
