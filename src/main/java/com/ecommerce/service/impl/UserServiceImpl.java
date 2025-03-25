@@ -3,6 +3,7 @@ package com.ecommerce.service.impl;
 import com.ecommerce.dto.request.UserRequest;
 import com.ecommerce.dto.response.BaseResponse;
 import com.ecommerce.dto.response.UserResponse;
+import com.ecommerce.enums.Role;
 import com.ecommerce.exceptions.ModelNotFoundException;
 import com.ecommerce.model.User;
 import com.ecommerce.repositories.UserRepository;
@@ -33,6 +34,7 @@ public class UserServiceImpl implements UserService {
         User user = User.builder().build();
         BeanUtils.copyProperties(userRequest,user);
         user.setAge(Integer.valueOf(userRequest.getAge()));
+        user.setRole(Role.USER);
         user = userRepository.save(user);
         UserResponse userResponse = UserResponse.builder().build();
         BeanUtils.copyProperties(user,userResponse);
