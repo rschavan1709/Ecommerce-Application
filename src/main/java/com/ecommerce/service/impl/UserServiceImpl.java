@@ -5,6 +5,7 @@ import com.ecommerce.dto.response.BaseResponse;
 import com.ecommerce.dto.response.UserResponse;
 import com.ecommerce.enums.Role;
 import com.ecommerce.exceptions.ModelNotFoundException;
+import com.ecommerce.exceptions.UserAlreadyPresentException;
 import com.ecommerce.model.User;
 import com.ecommerce.repositories.UserRepository;
 import com.ecommerce.service.UserService;
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
         log.info("Inside registerUser method");
         Optional<User> optionalUser = userRepository.findByEmail(userRequest.getEmail());
         if(optionalUser.isPresent())
-            throw new RuntimeException(USER_ALREADY_EXISTS_WITH_GIVEN_EMAIL);
+            throw new UserAlreadyPresentException(USER_ALREADY_EXISTS_WITH_GIVEN_EMAIL);
         User user = User.builder().build();
         BeanUtils.copyProperties(userRequest,user);
         user.setAge(Integer.valueOf(userRequest.getAge()));

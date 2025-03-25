@@ -27,6 +27,15 @@ public class ExceptionHandlers {
         return new ResponseEntity<>(baseResponse,HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(UserAlreadyPresentException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ResponseBody
+    public ResponseEntity<BaseResponse<String>> handleUserAlreadyPresentException(final UserAlreadyPresentException exception){
+        log.error("UserAlreadyPresentException: "+exception.getMessage());
+        BaseResponse<String> baseResponse = new BaseResponse<>(HttpStatus.CONFLICT.value(), exception.getMessage(), null, exception.getMessage());
+        return new ResponseEntity<>(baseResponse,HttpStatus.CONFLICT);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
