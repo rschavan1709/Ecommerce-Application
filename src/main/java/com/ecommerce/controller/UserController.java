@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -18,12 +19,13 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping()
+    @PostMapping("/register")
     public ResponseEntity<BaseResponse<UserResponse>> registerUser(@RequestBody @Valid UserRequest userRequest){
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.registerUser(userRequest));
     }
 
     @GetMapping()
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<BaseResponse<List<UserResponse>>> getAllUser(){
         return ResponseEntity.ok(userService.getAllUsers());
     }

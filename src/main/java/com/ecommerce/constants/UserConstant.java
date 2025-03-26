@@ -28,4 +28,5 @@ public final class UserConstant {
             "one uppercase letter,one lowercase letter, one special character and at least 8 characters and " +
             "at most 15 characters";
     public static final String USER_ALREADY_EXISTS_WITH_GIVEN_EMAIL = "User is already exists with given email";
+    public static final String USER_AUTHENTICATE_SUCCESS = "User Authenticated Successfully";
 }

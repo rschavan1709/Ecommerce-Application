@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,8 @@ import static com.ecommerce.constants.UserConstant.*;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Override
     public BaseResponse<UserResponse> registerUser(UserRequest userRequest) {
         log.info("Inside registerUser method");
@@ -35,6 +38,7 @@ public class UserServiceImpl implements UserService {
         User user = User.builder().build();
         BeanUtils.copyProperties(userRequest,user);
         user.setAge(Integer.valueOf(userRequest.getAge()));
+        user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
         user.setRole(Role.USER);
         user = userRepository.save(user);
         UserResponse userResponse = UserResponse.builder().build();
