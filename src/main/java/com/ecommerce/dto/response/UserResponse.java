@@ -2,6 +2,7 @@ package com.ecommerce.dto.response;
 
 import com.ecommerce.enums.Gender;
 import com.ecommerce.enums.Role;
+import com.ecommerce.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,4 +23,5 @@ public class UserResponse {
     private String email;
     private String password;
     private Role role;
+    private Status status;
 }

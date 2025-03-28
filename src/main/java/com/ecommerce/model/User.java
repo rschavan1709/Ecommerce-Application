@@ -2,6 +2,7 @@ package com.ecommerce.model;
 
 import com.ecommerce.enums.Gender;
 import com.ecommerce.enums.Role;
+import com.ecommerce.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,6 +41,8 @@ public class User implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

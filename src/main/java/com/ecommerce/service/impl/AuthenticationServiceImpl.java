@@ -4,6 +4,7 @@ import com.ecommerce.config.JwtService;
 import com.ecommerce.dto.request.AuthenticationRequest;
 import com.ecommerce.dto.response.AuthenticationResponse;
 import com.ecommerce.dto.response.BaseResponse;
+import com.ecommerce.enums.Status;
 import com.ecommerce.model.User;
 import com.ecommerce.repositories.UserRepository;
 import com.ecommerce.service.AuthenticationService;
@@ -28,7 +29,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     public BaseResponse<AuthenticationResponse> authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
-        User user=userRepository.findByEmail(request.getEmail())
+        User user=userRepository.findByEmailAndStatus(request.getEmail(), Status.ACTIVE)
                 .orElseThrow();
         String jwtToken=jwtService.generateToken(user);
         AuthenticationResponse authenticationResponse = AuthenticationResponse.builder().token(jwtToken).build();

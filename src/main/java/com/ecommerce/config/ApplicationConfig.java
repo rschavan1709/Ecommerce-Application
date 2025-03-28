@@ -1,5 +1,6 @@
 package com.ecommerce.config;
 
+import com.ecommerce.enums.Status;
 import com.ecommerce.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +25,7 @@ public class ApplicationConfig {
     @Bean
     public UserDetailsService userDetailsService(){
 
-        return username -> userRepository.findByEmail(username).orElseThrow(()-> new UsernameNotFoundException(USER_NOT_FOUND));
+        return username -> userRepository.findByEmailAndStatus(username, Status.ACTIVE).orElseThrow(()-> new UsernameNotFoundException(USER_NOT_FOUND));
     }
 
     @Bean
